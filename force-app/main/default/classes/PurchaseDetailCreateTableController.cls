@@ -10,10 +10,17 @@ public with sharing class PurchaseDetailCreateTableController {
         Quantity__c,
         Purchase__c,
         Account__c,
-        Amount__c
+        Amount__c,
+        AmountDisplay__c
       FROM PurchaseDetail__c
       WHERE Purchase__c = :parentId
     ];
     return records;
+  }
+
+  @AuraEnabled
+  public static void save(List<PurchaseDetail__c> records) {
+    System.debug(records);
+    update records;
   }
 }
